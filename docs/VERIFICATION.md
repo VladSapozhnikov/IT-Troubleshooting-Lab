@@ -12,6 +12,8 @@ The workflow targets Windows Server 2022 with Python 3.13 and Windows PowerShell
 
 Hosted Windows runner results are not a claim of Windows 11 execution on the owner's laptop. Local drive format, account policy, and security software can differ.
 
+During Windows verification, reapplying the saved ACL retained all original access entries but Windows added the `AI` (auto-inherited) descriptor flag. The regression check therefore compares the exact ACL bytes and all other descriptor flags, allowing only that automatically updated metadata bit. It still requires the write-denial and successful-repair checks to pass. [Microsoft documents these descriptor flags](https://learn.microsoft.com/en-us/windows/win32/secauthz/security-descriptor-string-format).
+
 ## Run the checks locally
 
 From the repository root:
