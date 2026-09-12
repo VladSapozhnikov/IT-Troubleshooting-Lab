@@ -1,0 +1,11 @@
+# Local configuration, synthetic logs, and private ACL backup
+.lab/
+.permission-lab/
+__pycache__/
+*.py[cod]
+.venv/
+.env
+# Review and crop screenshots before placing them in evidence/
+evidence/raw/
+Thumbs.db
+.DS_Store
