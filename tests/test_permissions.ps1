@@ -29,7 +29,11 @@ try {
     Invoke-TestAction 'Fix' 0
     Invoke-TestAction 'Check' 0
     $testAfter = (Get-Acl -LiteralPath $testFile).GetSecurityDescriptorSddlForm($testSection)
-    if ($testBefore -ne $testAfter) { throw 'The original DACL was not restored exactly.' }
+    if ($testBefore -ne $testAfter) {
+        Write-Output "Original DACL: $testBefore"
+        Write-Output "Restored DACL: $testAfter"
+        throw 'The original DACL was not restored exactly.'
+    }
     Write-Output 'PASS: Windows write succeeds, denial is enforced, setup preserves the backup, and repair restores the original DACL.'
 } finally {
     if (Test-Path -LiteralPath (Join-Path $testRoot '.permission-lab\original-acl.json')) {
